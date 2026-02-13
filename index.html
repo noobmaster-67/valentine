@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subho ❤️ Ishi</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff1e56, #ff4b2b);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+/* Password Screen */
+#passwordScreen {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.screen {
+  display: none;
+  height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.active {
+  display: flex;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.nextBtn {
+  background: white;
+  color: #ff1e56;
+}
+
+#yesBtn {
+  background: white;
+  color: #ff1e56;
+}
+
+#noBtn {
+  background: black;
+  color: white;
+  position: absolute;
+}
+
+img {
+  width: 250px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  margin-top: 20px;
+}
+
+/* Floating Hearts */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.7;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" src="love.mp3"></audio>
+
+<div id="hearts"></div>
+
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen">
+  <h2>Enter the Special Date ❤️</h2>
+  <input type="password" id="passwordInput" placeholder="DD-MM-YYYY">
+  <button onclick="checkPassword()">Unlock 💌</button>
+</div>
+
+<!-- Screen 1 -->
+<div class="screen" id="screen1">
+  <h1>Tap anywhere to start ❤️</h1>
+</div>
+
+<!-- Screen 2 -->
+<div class="screen" id="screen2">
+  <p>
+  In 2021 I met a stranger online. (thought she was full of attitude).  
+  In 2022 that "whatever" became my favourite person.  
+  Most of our love was lived in calls and text but it always felt real to me meri jhalli.  
+  And then, Vrindavan happened.  
+  I'm so glad & felt lucky that I met you in this date of February last year 😭🥰❤️
+  </p>
+  <button class="nextBtn" onclick="nextScreen(3)">Next ❤️</button>
+</div>
+
+<!-- Screen 3 -->
+<div class="screen" id="screen3">
+  <p>
+  My wifey ❤️,  
+  You are my peace and headache. My comfort. My safe place.  
+  From online strangers to holding hands in Vrindavan,  
+  from whatever to forever.  
+  Will you be with me till the end?
+  </p>
+  <button class="nextBtn" onclick="nextScreen(4)">Next 💕</button>
+</div>
+
+<!-- Screen 4 -->
+<div class="screen" id="screen4">
+  <h2>Us ❤️</h2>
+  <img src="photo.jpg">
+  <button class="nextBtn" onclick="nextScreen(5)">Next 💍</button>
+</div>
+
+<!-- Screen 5 -->
+<div class="screen" id="screen5">
+  <h1>Will you be my Mrs. Kar for the rest of your life? 💍❤️</h1>
+  <button id="yesBtn" onclick="nextScreen(6)">Yes 😍</button>
+  <button id="noBtn">No 😜</button>
+</div>
+
+<!-- Screen 6 -->
+<div class="screen" id="screen6">
+  <h1>She said YES 😭❤️</h1>
+  <p>I love you forever meri jhalli 💖</p>
+</div>
+
+<script>
+
+// Password check
+function checkPassword() {
+  const password = document.getElementById("passwordInput").value;
+  if (password === "21-02-2025") {
+    document.getElementById("passwordScreen").style.display = "none";
+    document.getElementById("screen1").classList.add("active");
+  } else {
+    alert("Wrong date 😜 Try again!");
+  }
+}
+
+// Screen switch
+function nextScreen(num) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen' + num).classList.add('active');
+}
+
+// Music start
+document.getElementById('screen1').addEventListener('click', function() {
+  document.getElementById('bgMusic').play();
+  nextScreen(2);
+});
+
+// Moving No button
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function() {
+  noBtn.style.left = Math.random() * 80 + "vw";
+  noBtn.style.top = Math.random() * 80 + "vh";
+});
+
+// Floating hearts
+const heartsContainer = document.getElementById("hearts");
+for (let i = 0; i < 30; i++) {
+  let heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.top = Math.random() * 100 + "vh";
+  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+  heartsContainer.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
